@@ -1,6 +1,6 @@
 package com.figstudy.domain.books;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,10 +16,10 @@ public class BooksRepositoryTest {
     @Autowired
     BooksRepository booksRepository;
 
-    /*@AfterAll
-    public static void cleanup() {
+    @AfterEach
+    public void cleanup() {
         booksRepository.deleteAll();
-    }*/
+    }
 
     @Test
     public void 책저장_불러오기() {
@@ -36,7 +36,7 @@ public class BooksRepositoryTest {
         List<Books> booksList = booksRepository.findAll();
 
         //then
-        Books books = booksList.get(1);
+        Books books = booksList.get(0);
         assertThat(books.getTitle()).isEqualTo(title);
         assertThat(books.getContent()).isEqualTo(content);
     }
