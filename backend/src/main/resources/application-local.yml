@@ -2,10 +2,10 @@ spring:
   config:
     activate:
       on-profile: local
-  profiles:
-    include: oauth
   session:
     store-type: jdbc
+  jdbc:
+    initialize-schema: always
   h2:
     console:
       enabled: true
