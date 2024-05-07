@@ -1,38 +1,51 @@
 package com.figstudy.web;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.figstudy.domain.books.Books;
 import com.figstudy.domain.books.BooksRepository;
 import com.figstudy.web.dto.BooksSaveRequestDto;
 import com.figstudy.web.dto.BooksUpdateRequestDto;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BooksApiControllerTest {
 
-    /*@LocalServerPort
+    @LocalServerPort
     private int port;
 
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Autowired
-    private BooksRepository postsRepository;
+    private BooksRepository booksRepository;
 
     @Autowired
     private WebApplicationContext context;
 
     private MockMvc mvc;
 
-    //@Before
+    @BeforeEach
     public void setup() {
         mvc = MockMvcBuilders
                 .webAppContextSetup(context)
@@ -40,14 +53,14 @@ public class BooksApiControllerTest {
                 .build();
     }
 
-    //@After
+    @AfterEach
     public void tearDown() throws Exception {
-        postsRepository.deleteAll();
+        booksRepository.deleteAll();
     }
 
     @Test
     @WithMockUser(roles="USER")
-    public void Posts_등록된다() throws Exception {
+    public void Books_등록된다() throws Exception {
         //given
         String title = "title";
         String content = "content";
@@ -66,7 +79,7 @@ public class BooksApiControllerTest {
                 .andExpect(status().isOk());
 
         //then
-        List<Books> all = postsRepository.findAll();
+        List<Books> all = booksRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(title);
         assertThat(all.get(0).getContent()).isEqualTo(content);
     }
@@ -75,13 +88,13 @@ public class BooksApiControllerTest {
     @WithMockUser(roles="USER")
     public void Posts_수정된다() throws Exception {
         //given
-        Books savedPosts = postsRepository.save(Books.builder()
+        Books savedBooks = booksRepository.save(Books.builder()
                 .title("title")
                 .content("content")
                 .author("author")
                 .build());
 
-        Long updateId = savedPosts.getId();
+        Long updateId = savedBooks.getId();
         String expectedTitle = "title2";
         String expectedContent = "content2";
 
@@ -99,10 +112,10 @@ public class BooksApiControllerTest {
                 .andExpect(status().isOk());
 
         //then
-        List<Books> all = postsRepository.findAll();
+        List<Books> all = booksRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
 
 
-    }*/
+    }
 }
