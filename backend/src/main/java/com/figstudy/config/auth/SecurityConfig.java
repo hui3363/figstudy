@@ -1,10 +1,8 @@
-package com.figstudy.config;
+package com.figstudy.config.auth;
 
-import com.figstudy.config.auth.CustomOAuth2UserService;
 import com.figstudy.domain.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
