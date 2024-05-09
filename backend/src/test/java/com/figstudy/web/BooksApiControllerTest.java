@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
+//import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -22,7 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
+//import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,7 +49,7 @@ public class BooksApiControllerTest {
     public void setup() {
         mvc = MockMvcBuilders
                 .webAppContextSetup(context)
-                .apply(springSecurity())
+                //.apply(springSecurity())
                 .build();
     }
 
@@ -59,7 +59,7 @@ public class BooksApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    //@WithMockUser(roles="USER")
     public void Books_등록된다() throws Exception {
         //given
         String title = "title";
@@ -70,7 +70,7 @@ public class BooksApiControllerTest {
                 .author("author")
                 .build();
 
-        String url = "http://localhost:" + port + "/api/v1/posts";
+        String url = "http://localhost:" + port + "/api/v1/books";
 
         //when
         mvc.perform(post(url)
@@ -85,7 +85,7 @@ public class BooksApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="USER")
+    //@WithMockUser(roles="USER")
     public void Books_수정된다() throws Exception {
         //given
         Books savedBooks = booksRepository.save(Books.builder()
@@ -103,7 +103,7 @@ public class BooksApiControllerTest {
                 .content(expectedContent)
                 .build();
 
-        String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
+        String url = "http://localhost:" + port + "/api/v1/books/" + updateId;
 
         //when
         mvc.perform(put(url)
