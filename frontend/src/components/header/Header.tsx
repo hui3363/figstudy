@@ -1,20 +1,21 @@
-import React from 'react'
 import styles from './Header.module.scss'
-import { Link } from 'react-router-dom'
 import Nav from './nav/Nav'
+import logoImg from '../../assets/logo.png'
 
 const Header = () => {
 	return (
 		<div className={styles.header}>
 			<div className='container'>
-				<div className={styles.header_wrapper}>
+				<div className={styles.header_global}>
 					<div className={styles.header_logo}>
-						<Link to={"/"}>
-							<h2>Shop</h2>
-						</Link>
+						<img src={logoImg} alt="무화과 서재" />
 					</div>
-					<Nav />
+					<div className={styles.header_global_utils}>
+						<button className={styles.util_btn}>회원가입</button>
+						<button className={styles.util_btn}>로그인</button>
+					</div>
 				</div>
+				<Nav />
 			</div>
 		</div>
 	)

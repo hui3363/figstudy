@@ -7,40 +7,36 @@
 	box-shadow: 0 3px 11px 0 rgb(0 0 0 / 15%);
 }
 
-.header_wrapper {
+.header_global {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	padding: 10px 0;
-}
+	padding: 30px 0;
 
-.header_logo {
-	display: flex;
-	flex-direction: row;
+	.header_global_utils {
+		button {
+			margin: 5px;
+		}
 
-	span {
-			font-size: 20px;
-	}
-
-	h2 {
-			margin: 0 0 0 10px;
-			font-size: 20px;
-
-			&:hover {
-					color: var(--hover-color);
-					cursor: pointer;
-					transition: 0.3s all ease;
+		.util_btn {
+			width: 100px;
+			padding: 6px;
+			border: 2px solid #333;
+			border-radius: 25px;
+			color: #333;
+			background-color: transparent;
+			font-size: 14px;
+			font-weight: 700;
+			text-align: center;
+			cursor: pointer;
+			box-sizing: border-box;
+			transition: .4s;
+			&:hover{
+					color: #fff;
+					background-color: #333;
 			}
-	}
-
-	@media (min-width: 768px) {
-			span {
-					font-size: 25px;
-			}
-
-			h2 {
-					font-size: 25px;
-			}
+	
+		}
 	}
 }
